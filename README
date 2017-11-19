@@ -1,0 +1,41 @@
+There are 2 ways to respond to input from IMEs.
+
+Old way - Applications responding to WM_IME_CHAR and WM_CHAR messages.
+Characters from the BMP typed without an IME will generate a WM_CHAR
+message. Try to set a breakpoint at Ime/TextInputCtrl.cpp
+line 151 and 158.
+
+Characters from the BMP typed with an IME will generate 1 WM_IME_CHAR which will
+in turn generate a WM_CHAR message.
+
+Characters from any planes higher than the BMP will generate 2 WM_IME_CHAR and
+2 WM_CHAR messages. You can try this by entering a rocket emoji (U+1F680) using
+an emoji input method which I believe is available from Windows 8 onwards.
+Personally I use https://github.com/EasyIME/PIME because I only have a Windows
+7 setup. The first WM_CHAR contains the 1st code unit of a UTF-16 code point
+which is 0xD83D and the second 0xDE80.
+
+New way - Applications using the Text Services Framework
+Characters typed without an IME has the same behavior as the old
+way.
+
+Characters typed with an IME will bypass the window procedure and pass directly
+to the callbacks registered when the text services are first initialized with.
+Try to set a breakpoint at TextServices/TextStore.cpp line 228. The pchText
+argument will receive the entire UTF-16 code point and the cch argument will
+indicate pchText's length in code units.
+
+The weird thing about pchText is that pchText[0] == 0xD83D and pchText[1] ==
+0xDE80 even though pchText[0] can store the entire code point. cch == 2 in this
+case. When the callback encounters a code point within the BMP, pchText[0] will
+hold the code point, pchText[1] the null terminator, and cch == 1.
+
+The results above are only tested using Visual Studio 2017 v15.4.4 x64 compiler
+with the Unicode character set on Windows 7.
+
+Code samples are obtained from
+https://github.com/Microsoft/Windows-classic-samples
+Samples/Win7Samples/winui/input/tsf/tsfapps/immpad-level1 and
+Samples/Win7Samples/winui/input/tsf/tsfapps/tsfpad-step1
+
+Pre-compiled binaries are provided for your convenience.

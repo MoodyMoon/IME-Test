@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="immpad.cpp" />
+    <ClCompile Include="TextContainer.cpp" />
+    <ClCompile Include="TextEditor.cpp" />
+    <ClCompile Include="TextInputCtrl.cpp" />
+    <ClCompile Include="TextLayout.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ImmPad.h" />
+    <ClInclude Include="private.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="TextContainer.h" />
+    <ClInclude Include="TextEditor.h" />
+    <ClInclude Include="TextInputCtrl.h" />
+    <ClInclude Include="TextLayout.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="ImmPad.ico" />
+    <Image Include="small.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ImmPad.rc" />
+  </ItemGroup>
+</Project>

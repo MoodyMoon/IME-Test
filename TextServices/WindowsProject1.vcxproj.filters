@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClInclude Include="private.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="TextContainer.h" />
+    <ClInclude Include="TextEditor.h" />
+    <ClInclude Include="TextInputCtrl.h" />
+    <ClInclude Include="TextLayout.h" />
+    <ClInclude Include="TextStore.h" />
+    <ClInclude Include="TsfPad.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="small.ico" />
+    <Image Include="TsfPad.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="TextContainer.cpp" />
+    <ClCompile Include="TextEditor.cpp" />
+    <ClCompile Include="TextInputCtrl.cpp" />
+    <ClCompile Include="TextLayout.cpp" />
+    <ClCompile Include="TextStore.cpp" />
+    <ClCompile Include="TsfPad.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TsfPad.rc" />
+  </ItemGroup>
+</Project>
